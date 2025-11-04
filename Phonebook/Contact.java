@@ -4,7 +4,7 @@ public class Contact {
 
     private String name;
     private String contact;
-    private String updateContact;
+
 
     public Contact(String name, String contact) {
         this.name = name;
