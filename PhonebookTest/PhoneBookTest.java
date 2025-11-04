@@ -1,7 +1,7 @@
 package PhonebookTest;
 
 import Phonebook.Contact;
-import Phonebook.phonebook;
+import Phonebook.PhoneBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PhoneBookTest {
 
-    private phonebook phoneList;
+    private PhoneBook phoneList;
     private Contact contact;
     private Contact contact1;
 
     @BeforeEach
     public void setUp(){
-        phoneList = new phonebook();
+        phoneList = new PhoneBook();
         contact = new Contact("adam", "12345");
         contact1 = new Contact("chibuzor", "123t45");
     }
@@ -45,8 +45,15 @@ public class PhoneBookTest {
         phoneList.addContact(contact1);
         phoneList.addContact(contact3);
         phoneList.deleteContact("adam");
-        assertEquals(1, phoneList.getSize());
-        assertNull(null,phoneList.findContactByName("adam"));
+        assertEquals(2, phoneList.getSize());
+    }
+
+    @Test
+    public void testThatDeletedContactDoesNotExist(){
+        phoneList.addContact(contact);
+        phoneList.addContact(contact1);
+        phoneList.deleteContact("adam");
+        assertNull(null, phoneList.findContactByName("adam"));
     }
 
     @Test
